@@ -4,7 +4,40 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import metrics
 
-...
+df = pd.read_csv('diabetes.csv', index_col=0)
+feature_names = df.columns[:-1]
+
+# print the top most data
+#print(df.head())
+
+## Standardize the features ##
+# (Always have to do regardless of what model is used, very important. Standardizing means removing the Mean and having Standard Deviation of 1)
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler() # creates object of type StandardScaler
+scaler.fit(df.drop('target', axis=1)) # dataset is set to 'df', but need to drop last column bc its the labels column. Want to standardize features, not labels.
+
+# after feeding to data, have to set characteristics. 
+# copy=true means work on copy of data and not og. mean = true because we want mean = 0, and std=true means we want it to have unique sd
+StandardScaler(copy=True, with_mean=True, with_std=True)
+
+ # transformed features to standardized scale
+scaled_features = scaler.transform(df.drop('target', axis=1))
+
+
+df_feat = pd.DataFrame(scaled_features, columns=df.columns[:-1]) # attaches the last column to end of scaled features and convert to DF
+#print(df_feat.head()) # now can see value of features, SD of 1. Small numbers around 1.
+
+# create visualizations below
+import seaborn as sns
+# sns.pairplot(df, hue='target')
+# plt.show()
+
+## Split the data into train and test ##
+from sklearn.model_selection import train_test_split
+# stratify means same proportions of classes in training data also in test data. 
+# test_size is percent of data to be tested, so here 30%. meaning 70% to train. 
+# Randomstate is if you run code again, you'll get same result.
+x_train, x_test, y_train, y_test = train_test_split(scaled_features, df['target'], test_size=0.3, stratify=df['target'], random_state=42)
 
 # Apply kNN
 from sklearn.neighbors import KNeighborsClassifier

@@ -7,7 +7,7 @@ from sklearn import metrics
 df = pd.read_csv('diabetes.csv', index_col=0)
 feature_names = df.columns[:-1]
 
-# print the top most data (1-5)
+# print the top most data
 #print(df.head())
 
 ## Standardize the features ##
@@ -65,11 +65,11 @@ predictions_test[predictions_test <= 0.5] = 0
 predictions_test[predictions_test > 0.5] = 1
 predictions_test = predictions_test.astype(int)
 
-# ## Display confusion matrix ##
-# confusion_matrix = metrics.confusion_matrix(y_test, predictions_test, labels=class_names)
-# confusion_matrix_display = metrics.ConfusionMatrixDisplay(confusion_matrix=confusion_matrix, display_labels=class_names)
-# confusion_matrix_display.plot()
-# plt.show()
+## Display confusion matrix ##
+confusion_matrix = metrics.confusion_matrix(y_test, predictions_test, labels=class_names)
+confusion_matrix_display = metrics.ConfusionMatrixDisplay(confusion_matrix=confusion_matrix, display_labels=class_names)
+confusion_matrix_display.plot()
+plt.show()
 
 # ## Report Overall Accuracy, precision, recall, F1-score ##
 # print(metrics.classification_report(
@@ -96,12 +96,6 @@ for i in alpha_values:
 
     # Find the confusion matrix and accuracy metrics using this value for the hyperparameter and the training and test data that you created before.
     # Display confusion matrix
-
-    ## Display confusion matrix ##
-    confusion_matrix = metrics.confusion_matrix(y_test, predictions_test, labels=class_names)
-    confusion_matrix_display = metrics.ConfusionMatrixDisplay(confusion_matrix=confusion_matrix, display_labels=class_names)
-    confusion_matrix_display.plot()
-    plt.show()
 
     # Report Overall Accuracy, precision, recall, F1-score
     print(metrics.classification_report(
