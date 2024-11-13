@@ -42,7 +42,9 @@ cross_validation_accuracies = []
 cross_validation_precisions = []
 cross_validation_recalls = []
 cross_validation_f1scores = []
-c_values = np.arange(0.01, 1.5, 0.05)
+
+# Define specific c_values with the required increments
+c_values = [0.01] + [round(0.05 + i * 0.05, 2) for i in range(20)]  # Start with 0.01 and then add increments of 0.05
 
 for i in c_values:
     print('c is:', i)

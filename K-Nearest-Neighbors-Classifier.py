@@ -1,5 +1,5 @@
 import pandas as pd
-import seaborn as sns
+#import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import metrics
@@ -28,7 +28,7 @@ df_feat = pd.DataFrame(scaled_features, columns=df.columns[:-1]) # attaches the 
 #print(df_feat.head()) # now can see value of features, SD of 1. Small numbers around 1.
 
 # create visualizations below
-import seaborn as sns
+#import seaborn as sns
 # sns.pairplot(df, hue='target')
 # plt.show()
 

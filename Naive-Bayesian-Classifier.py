@@ -1,7 +1,5 @@
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
 from sklearn import metrics
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
@@ -11,7 +9,6 @@ from sklearn.model_selection import cross_val_score
 # Load data
 df = pd.read_csv('diabetes.csv', index_col=0)
 feature_names = df.columns[:-1]
-
 
 ## Standardize the features ##
 scaler = StandardScaler()
@@ -53,7 +50,7 @@ cross_validation_f1scores = []
 cross_validation_roc_auc = []
 
 # Valid priors (values must sum to 1)
-priors = ([0.01, 0.99], [0.1, 0.9], [0.2, 0.8], [0.3, 0.7], [0.4, 0.6], [0.5, 0.5], [0.6, 0.4], [0.7, 0.3], [0.8, 0.2], [0.9, 0.1], [0.99, 0.01])
+priors = ([0.00, 1.00], [0.1, 0.9], [0.2, 0.8], [0.3, 0.7], [0.4, 0.6], [0.5, 0.5], [0.6, 0.4], [0.7, 0.3], [0.8, 0.2], [0.9, 0.1], [1.00, 0.00])
 
 for p in priors:
     print('Priors are:', p)
